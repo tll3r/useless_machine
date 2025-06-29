@@ -1,0 +1,18 @@
+---
+# tasks file for useless_machine role
+
+- name: Copy the useless script to the remote host
+  ansible.builtin.copy:
+    src: "useless_script.sh"  # looked for in the role's files/ directory
+    dest: "{{ useless_script_remote_path }}"
+    mode: '0755'
+
+- name: Run the useless script (which deletes itself)
+  ansible.builtin.shell: "{{ useless_script_remote_path }}"
+  args:
+    executable: /bin/bash
+  register: script_output
+
+- name: Show script output
+  ansible.builtin.debug:
+    var: script_output.stdout 

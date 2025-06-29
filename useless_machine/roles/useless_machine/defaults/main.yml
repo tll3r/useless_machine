@@ -1,0 +1,3 @@
+---
+# Default variables for useless_machine role
+useless_script_remote_path: "/tmp/useless_script.sh" 
